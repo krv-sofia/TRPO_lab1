@@ -10,9 +10,9 @@ public:
     FileManager() {};
     FileManager(const QList<QString> paths);
     void addFile(const QString path);
+    void checkFiles();
 
 public slots:
-    void checkFiles();
     void printLog(std::string str);
 signals:
     void fileChanged(std::string str);
