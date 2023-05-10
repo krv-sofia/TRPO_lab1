@@ -19,13 +19,13 @@ void FileManager::addFile(QString path)
 {
      QFileInfo newFile(path);
      if (_files_list.contains(newFile.absoluteFilePath())) {
-         emit printLog("You are already tracking this file");
+         emit fileChanged("You are already tracking this file");
          return;
      }
      FileInfo newFileInfo = {path};
      _files_info.push_back(newFileInfo);
      _files_list.push_back(path);
-     emit printLog("\nFile '" + newFileInfo.getFileName().toStdString() + "' was added.");
+     emit fileChanged("\nFile '" + newFileInfo.getFileName().toStdString() + "' was added.");
 }
 
 
