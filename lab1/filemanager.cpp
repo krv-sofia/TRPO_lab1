@@ -6,12 +6,13 @@
 FileManager::FileManager(const QList<QString> paths) {
     if (paths.length() > 0) {
         for (auto i = paths.constBegin(); i != paths.constEnd(); ++i) {
-             FileInfo fileInfo = {*i};
+             FileInfo fileInfo = *i;
+             QFileInfo file(*i);
              this->_files_info.push_back(fileInfo);
-             this->_files_list.push_back(*i);
+             this->_files_list.push_back(file.absoluteFilePath());
          }
     } else {
-        throw std::runtime_error("oops something went wrong!");
+        FileManager();
     }
 }
 
@@ -24,7 +25,7 @@ void FileManager::addFile(QString path)
      }
      FileInfo newFileInfo = {path};
      _files_info.push_back(newFileInfo);
-     _files_list.push_back(path);
+     _files_list.push_back(newFile.absoluteFilePath());
      emit fileChanged("\nFile '" + newFileInfo.getFileName().toStdString() + "' was added.");
 }
 
@@ -33,7 +34,7 @@ void FileManager::addFile(QString path)
 void FileManager::checkFiles()
 {
     int i = 0;
-    for (const auto &filePath : _files_list) {
+    for (auto &filePath : _files_list) {
         QFileInfo fileInfo(filePath);
         FileInfo temp = _files_info[i];
         if (temp._doesExist && fileInfo.exists()) {

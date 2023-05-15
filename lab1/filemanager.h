@@ -27,8 +27,8 @@ private:
         FileInfo(QString path) {
             QFileInfo _file(path);
             _fileName = path.section("/",-1,-1);
-            _doesExist = _file.exists() && _file.isFile();
-            _size = _file.exists() ? _file.size() : 0;
+            _doesExist = _file.exists();
+            _size = _doesExist ? _file.size() : 0;
         }
         QString getFileName() {
             return _fileName;
