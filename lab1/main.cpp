@@ -7,10 +7,11 @@
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
-    QList<QString> paths_list = {"fileName1.txt", "fileName2.txt"};
-    //FileManager manager;
+    //QList<QString> paths_list = {"fileName1.txt", "fileName2.txt"};
+    QList<QString> paths_list = {};
     FileManager manager(paths_list);
     QObject::connect(&manager, SIGNAL(fileChanged(std::string)), &manager, SLOT(printLog(std::string)));
+    manager.addFile("fileName3.txt");
     manager.addFile("fileName3.txt");
     manager.addFile("fileName4.txt");
     manager.addFile("fileName5.txt");
