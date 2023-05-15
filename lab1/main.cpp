@@ -11,8 +11,6 @@ int main(int argc, char *argv[])
     QList<QString> paths_list = {};
     FileManager manager(paths_list);
     QObject::connect(&manager, SIGNAL(fileChanged(std::string)), &manager, SLOT(printLog(std::string)));
-    manager.addFile("fileName1.txt");
-    manager.addFile("fileName2.txt");
     manager.addFile("fileName3.txt");
     manager.addFile("fileName3.txt");
     manager.addFile("fileName4.txt");
