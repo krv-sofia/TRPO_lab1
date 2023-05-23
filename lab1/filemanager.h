@@ -7,8 +7,12 @@
 class FileManager : public QObject {
     Q_OBJECT
 public:
-    FileManager() {}
-    FileManager(const QList<QString> paths);
+    static FileManager& getInstance(const QList<QString> paths = QList<QString> ()) {
+       static FileManager instance(paths);
+       return instance;
+    }
+    FileManager(FileManager const&) = delete;
+    void operator=(FileManager const&) = delete;
     void addFile(const QString path);
     void checkFiles();
 
@@ -18,6 +22,8 @@ signals:
     void fileChanged(std::string str);
 
 private:
+    FileManager() {}
+    FileManager(const QList<QString> paths);
     struct FileInfo {
     public:
         bool _doesExist;
