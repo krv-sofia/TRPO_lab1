@@ -23,7 +23,7 @@ void FileManager::addFile(QString path)
          emit fileChanged("You are already tracking this file");
          return;
      }
-     FileInfo newFileInfo = {path};
+     FileInfo newFileInfo(path);
      _files_info.push_back(newFileInfo);
      _files_list.push_back(newFile.absoluteFilePath());
      emit fileChanged("\nFile '" + newFileInfo.getFileName().toStdString() + "' was added.");

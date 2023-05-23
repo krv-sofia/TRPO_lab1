@@ -7,7 +7,7 @@
 class FileManager : public QObject {
     Q_OBJECT
 public:
-    FileManager() {};
+    FileManager() {}
     FileManager(const QList<QString> paths);
     void addFile(const QString path);
     void checkFiles();
