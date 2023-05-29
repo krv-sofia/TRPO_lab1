@@ -26,19 +26,20 @@ private:
 
         FileInfo(QString path) {
             QFileInfo _file(path);
-            _fileName = path.section("/",-1,-1);
+            _fileName = _file.absoluteFilePath();
+            //_fileName = path.section("/",-1,-1);
             _doesExist = _file.exists();
             _size = _doesExist ? _file.size() : 0;
         }
-        QString getFileName() {
+        /*QString getFileName() {
             return _fileName;
-        }
+        }*/
         int getFileSize() {
             return _size;
         }
     };
 
     QList<FileInfo> _files_info;
-    QList<QString> _files_list;
+    //QList<QString> _files_list;
 };
 #endif // FILEMANAGER_H
