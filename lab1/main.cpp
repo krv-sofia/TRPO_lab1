@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
     manager.addFile("fileName3.txt");
     QObject::connect(&manager, SIGNAL(fileChanged(std::string)), &manager, SLOT(printLog(std::string)));
     manager.addFile("fileName3.txt");
-    manager.addFile("fileName3.txt");
+    manager2.addFile("fileName3.txt");
     manager2.addFile("fileName4.txt");
     manager2.addFile("fileName5.txt");
 
