@@ -7,9 +7,7 @@ FileManager::FileManager(const QList<QString> paths) {
     if (paths.length() > 0) {
         for (auto i = paths.constBegin(); i != paths.constEnd(); ++i) {
              FileInfo fileInfo = *i;
-             QFileInfo file(*i);
              this->_files_info.push_back(fileInfo);
-             //this->_files_list.push_back(file.absoluteFilePath());
          }
     } else {
         FileManager();
@@ -25,14 +23,8 @@ void FileManager::addFile(QString path)
             return;
         }
     }
-     /*QFileInfo newFile(path);
-     if (_files_info.contains(newFile.filePath())) {
-         emit fileChanged("You are already tracking this file");
-         return;
-     }*/
      FileInfo newFileInfo(path);
      _files_info.push_back(newFileInfo);
-     //_files_list.push_back(newFile.absoluteFilePath());
      emit fileChanged("\nFile '" + newFileInfo._fileName.toStdString() + "' was added.");
 }
 
@@ -46,7 +38,7 @@ void FileManager::checkFiles()
         FileInfo temp = _files_info[i];
         if (temp._doesExist && fileInfo.exists()) {
                  if (_files_info[i]._size != fileInfo.size()) {
-                     emit fileChanged("\nFile '" + temp._fileName.toStdString() + "' was changed \nfrom " + std::to_string(temp.getFileSize()) + " bytes" +
+                     emit fileChanged("\nFile '" + temp._fileName.toStdString() + "' was changed \nfrom " + std::to_string(temp._size) + " bytes" +
                                       + " to " + std::to_string(fileInfo.size()) + " bytes");
                      _files_info[i]._size = fileInfo.size();
                  }
