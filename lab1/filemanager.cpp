@@ -16,14 +16,14 @@ FileManager::FileManager(const QList<QString> paths) {
 
 void FileManager::addFile(QString path)
 {
-    QFileInfo newFile(path);
+   FileInfo newFileInfo(path);
      for (auto i = _files_info.constBegin(); i != _files_info.constEnd(); ++i) {
-         if (i->_fileName == newFile.absoluteFilePath()) {
+         if (i->_fileName == newFileInfo._fileName) {
              emit fileChanged("You are already tracking this file");
              return;
          }
      }
-     FileInfo newFileInfo(path);
+
      _files_info.push_back(newFileInfo);
      emit fileChanged("\nFile '" + newFileInfo._fileName.toStdString() + "' was added.");
 }
@@ -35,18 +35,17 @@ void FileManager::checkFiles()
     int i = 0;
        for (auto &files : _files_info) {
            QFileInfo fileInfo(files._fileName);
-           FileInfo temp = _files_info[i];
-           if (temp._doesExist && fileInfo.exists()) {
+           if (files._doesExist && fileInfo.exists()) {
                     if (_files_info[i]._size != fileInfo.size()) {
-                        emit fileChanged("\nFile '" + temp._fileName.toStdString() + "' was changed \nfrom " + std::to_string(temp._size) + " bytes" +
+                        emit fileChanged("\nFile '" + files._fileName.toStdString() + "' was changed \nfrom " + std::to_string(files._size) + " bytes" +
                                          + " to " + std::to_string(fileInfo.size()) + " bytes");
                         _files_info[i]._size = fileInfo.size();
                     }
-                } else if (temp._doesExist && !fileInfo.exists()) {
-                    emit fileChanged("\nFile '" + temp._fileName.toStdString() + "' was deleted.");
+                } else if (files._doesExist && !fileInfo.exists()) {
+                    emit fileChanged("\nFile '" + files._fileName.toStdString() + "' was deleted.");
                     _files_info[i]._doesExist = false;
-                } else if (!temp._doesExist && fileInfo.exists()){
-                    emit fileChanged("\nFile '" + temp._fileName.toStdString() + "' was created.");
+                } else if (!files._doesExist && fileInfo.exists()){
+                    emit fileChanged("\nFile '" + files._fileName.toStdString() + "' was created.");
                     _files_info[i]._doesExist = true;
                     _files_info[i]._size = fileInfo.size();
                 }
