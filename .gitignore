@@ -1,5 +1,5 @@
 
-lab1/lab1.pro.user.5b9d1d6.22
+build-lab1-Desktop-Release/.qmake.stash
 
 build-lab1-Desktop-Release/.qtc_clangd/.cache/clangd/index/__FILE.h.1F308548AFF4D3EF.idx
 
@@ -636,3 +636,17 @@ build-lab1-Desktop-Release/.qtc_clangd/.cache/clangd/index/wordsize.h.BCE9266591
 build-lab1-Desktop-Release/.qtc_clangd/.cache/clangd/index/xopen_lim.h.E50A8BD3474841CA.idx
 
 build-lab1-Desktop-Release/.qtc_clangd/compile_commands.json
+
+build-lab1-Desktop-Release/filemanager.o
+
+build-lab1-Desktop-Release/lab1
+
+build-lab1-Desktop-Release/main.o
+
+build-lab1-Desktop-Release/Makefile
+
+build-lab1-Desktop-Release/moc_filemanager.cpp
+
+build-lab1-Desktop-Release/moc_filemanager.o
+
+build-lab1-Desktop-Release/moc_predefs.h

@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
     manager.addFile("fileName4.txt");
     manager.addFile("fileName5.txt");
 
-    manager.checkFiles();
+    //manager.checkFiles();
     while (true) {
         manager.checkFiles();
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
