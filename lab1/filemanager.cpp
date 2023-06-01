@@ -27,13 +27,11 @@ void FileManager::addFile(QString path)
    FileInfo newFileInfo(path);
      for (auto i = _files_info.constBegin(); i != _files_info.constEnd(); ++i) {
          if (i->_fileName == newFileInfo._fileName) {
-             //emit fileChanged("You are already tracking this file");
              return;
          }
      }
 
      _files_info.push_back(newFileInfo);
-     //emit fileChanged("\nFile '" + newFileInfo._fileName.toStdString() + "' was added.");
 }
 
 
@@ -53,7 +51,7 @@ void FileManager::checkFiles()
                     emit fileChanged("\nFile '" + files._fileName.toStdString() + "' was deleted.");
                     _files_info[i]._doesExist = false;
                 } else if (!files._doesExist && fileInfo.exists()){
-                    emit fileChanged("\nFile '" + files._fileName.toStdString() + "' was created.");
+                     emit fileChanged("\nFile '" + files._fileName.toStdString() + "' was created. \nSize: " + std::to_string(fileInfo.size()));
                     _files_info[i]._doesExist = true;
                     _files_info[i]._size = fileInfo.size();
                 }
