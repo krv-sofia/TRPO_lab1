@@ -34,7 +34,7 @@ private:
             QFileInfo _file(path);
             _fileName = _file.absoluteFilePath();
             _doesExist = _file.exists();
-            _size = _doesExist ? _file.size() : 0;
+            _size = _file.size();
         }
     };
 
